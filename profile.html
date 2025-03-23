@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>NightCity Warez | Profile</title>
+  </head>
+
+  <body>
+    <main class="outer-box">
+      <div class="wrapper">
+        <header>
+          <nav>
+            <h1 class="logo"><a href="index.html">NightCity Warez</a></h1>
+            <div class="nav-links">
+              <a href="index.html">Home</a>
+              <a href="products.html">Products</a>
+              <a href="about.html">About</a>
+              <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+              <a href="login.html" class="icon" title="Login"
+                ><i class="fas fa-sign-in-alt"></i
+              ></a>
+              <a href="profile.html" class="icon" title="Your Profile"
+                ><i class="fas fa-user"></i
+              ></a>
+              <a href="cart.html" class="icon" title="Your Shopping Cart"
+                ><i class="fas fa-shopping-cart"></i
+              ></a>
+            </div>
+          </nav>
+        </header>
+
+        <section class="profile-wrapper">
+          <div class="profile-header-container">
+            <img
+              class="profile-pic"
+              src="./images/profile-avatar.webp"
+              alt="Profile Avatar"
+            />
+            <h2 class="profile-username">NeonCipher</h2>
+            <p class="profile-rank">Premium Member</p>
+          </div>
+
+          <section class="profile-stats-wrapper">
+            <article class="stat-item">
+              <i class="fas fa-shopping-bag"></i>
+              <p class="stat-number">12</p>
+              <p class="stat-label">Orders</p>
+            </article>
+            <article class="stat-item">
+              <i class="fas fa-star"></i>
+              <p class="stat-number">4.8</p>
+              <p class="stat-label">Rating</p>
+            </article>
+            <article class="stat-item">
+              <i class="fas fa-medal"></i>
+              <p class="stat-number">Silver</p>
+              <p class="stat-label">Tier</p>
+            </article>
+          </section>
+
+          <section class="profile-sections-wrapper">
+            <article class="profile-section">
+              <h3><i class="fas fa-user-edit"></i> Personal Information</h3>
+              <form class="profile-form-wrapper">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" value="NeonCipher" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    value="neoncipher@nightcitywarez.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input
+                    id="location"
+                    type="text"
+                    value="Night City, District 7"
+                  />
+                </div>
+                <button class="btn" type="submit">Update Profile</button>
+              </form>
+            </article>
+
+            <article class="profile-section">
+              <h3><i class="fas fa-history"></i> Recent Orders</h3>
+              <section class="order-history-wrapper">
+                <article class="order-item">
+                  <div class="order-info">
+                    <span class="order-id">#NC28934</span>
+                    <span class="order-date">2025-01-05</span>
+                  </div>
+                  <div class="order-status">Delivered</div>
+                </article>
+                <article class="order-item">
+                  <div class="order-info">
+                    <span class="order-id">#NC28899</span>
+                    <span class="order-date">2024-12-28</span>
+                  </div>
+                  <div class="order-status">Processing</div>
+                </article>
+              </section>
+            </article>
+          </section>
+        </section>
+
+        <footer>
+          <div class="footer-content">
+            <section class="footer-section">
+              <h4>About Us</h4>
+              <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Blog</a></li>
+                <li><a href="about.html">Careers</a></li>
+                <li><a href="about.html">Press</a></li>
+              </ul>
+            </section>
+            <section class="footer-section">
+              <h4>Customer Service</h4>
+              <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="faq.html">Shipping Info</a></li>
+                <li><a href="faq.html">Returns</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+              </ul>
+            </section>
+            <section class="footer-section">
+              <h4>Follow Us</h4>
+              <ul>
+                <li>
+                  <a href="https://www.Instagram.com" target="_blank"
+                    >Instagram</a
+                  >
+                </li>
+                <li><a href="https://www.x.com" target="_blank">X</a></li>
+                <li>
+                  <a href="https://www.facebook.com" target="_blank"
+                    >Facebook</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com" target="_blank"
+                    >LinkedIn</a
+                  >
+                </li>
+              </ul>
+            </section>
+            <section class="footer-section">
+              <h4>Newsletter</h4>
+              <p>Stay updated with our latest offers</p>
+              <input type="email" placeholder="Enter your email" />
+              <button class="btn">Subscribe</button>
+            </section>
+          </div>
+          <div class="footer-copyright-text">
+            <p>© 2025 NightCity Warez. All rights reserved.</p>
+          </div>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,1653 @@
+/* *Importerar och skapar namn för fonter så att dom kan användas överallt på alla sidor */
+@font-face {
+  font-family: "Neuropol";
+  src: url(./fonts/Neuropol.otf);
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url(./fonts/Orbitron-VariableFont_wght.ttf);
+}
+
+/* *Olika variabler som används ofta i koden för att stylea bla skuggning på text och bakgrunden på boxar osv. */
+:root {
+  --text-shadow-logo: 1px 1px 1px #957dad, 1px 2px 1px #957dad,
+    1px 3px 1px #957dad, 1px 4px 1px #957dad, 1px 5px 1px #957dad,
+    1px 6px 1px #957dad, 1px 10px 5px rgba(16, 16, 16, 0.5),
+    1px 15px 10px rgba(16, 16, 16, 0.4), 1px 20px 30px rgba(16, 16, 16, 0.3),
+    1px 25px 50px rgba(16, 16, 16, 0.2);
+
+  --text-shadow-1: 1px 1px 1px #957dad, 1px 3px 2px rgba(16, 16, 16, 0.4),
+    1px 6px 3px rgba(16, 16, 16, 0.3);
+
+  --text-shadow-2: 1px 1px 1px #957dad, 1px 2px 1px #957dad,
+    1px 10px 5px rgba(16, 16, 16, 0.2), 1px 15px 10px rgba(16, 16, 16, 0.1);
+
+  /* Dessa är standard styleing för alla containrar som vi änvänder så att det ser likadant ut på varje sida */
+  --standard-container-background: rgba(255, 255, 255, 0.1);
+
+  --standard-backdrop-blur: blur(10px);
+
+  --standard-container-border: 1px solid rgba(255, 255, 255, 0.2);
+
+  --standard-border-radius: 20px;
+}
+
+html {
+  /* Standard värde för att enklare ändra hur rem beräknas */
+  font-size: 16px;
+}
+
+/* *UNIVERSAL SELECTOR */
+* {
+  /* Nollställ padding ochh margin då vi själva vill styra detta för varje element */
+  margin: 0;
+  padding: 0;
+  /* Gör det enklare att beräkna element då padding och border nu läggs till INNANFÖR innehållet istället för utanför */
+  box-sizing: border-box;
+}
+
+/* *INSTÄLLNINGAR OCH STYLING FÖR BODYN */
+/* Vi gör om allt till en flexbox och centrerar allt innehåll till mitten, vi sätter bakrunden till en bild
+  som vi talar om att den ska centreras och täcka hela sidan, bilden ska inte repetera sig själv och den ska vara fixerad så att den stannar på plats när vi scrollar */
+body {
+  background-image: url(./images/background.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* Lägger till lite inre mellanrum runt allt innehåll i bodyn */
+  padding: 2rem;
+  /* Vi vill inte tillåta horisontell scrollning på sidan */
+  overflow-x: hidden;
+}
+
+/* *YTTRE CONTAINERN PÅ SIDAN */
+/* Själva containern som allt innehåll på sidan ligger inuti, även denna gör vi till en flexbox fast vi sätter riktningen till column så att innehållet staplas vertikalt
+  alltså från toppen till botten istället för vänster till höger */
+.outer-box {
+  /* Gör bakgrunden nästan helt transparent med en svag lila ton. */
+  background: rgba(160, 53, 231, 0.05);
+  /* Lägger till en oskärpa på bakgrunden BAKOM detta element vilket skapar en "frostad glas"-effekt */
+  backdrop-filter: blur(5px);
+  /* Lägger till en tunn kantlinje runt boxen med 20% genomskinlighet */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Rundar alla hörnen på boxen */
+  border-radius: 30px;
+  padding: 2rem;
+  /* Ställer in bredden på elementet till 100% av dess förälder */
+  width: 100%;
+  /* Sätter en maxbredd på boxen även om förälderelementet är bredare för att inte boxen ska bli megastor om man kollar på en stor och bred skärm*/
+  max-width: 1500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* *En wrapper som används för att centrera och organisera allt innehåll med hjälp utav en flexbox, även denna säts till column så att innehållet staplas vertikalt */
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  /* Centrerar horisontellt inom dess förälder. */
+  margin: 0 auto;
+  /* Fyller upp allt tillgängligt utrymme i sin förälder (om möjligt). */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* *STYLING FÖR LOGGAN */
+.logo {
+  color: white;
+  font-size: 1.8rem;
+  font-family: Neuropol;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  animation: shimmer 5s infinite;
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Gör texten större vid hover */
+  text-shadow: 0 0 5px #ff9efc, 0 0 10px #ff9efc, 0 0 20px #ff9efc,
+    0 0 30px rgba(255, 158, 252, 0.75), 0 0 40px rgba(255, 158, 252, 0.5),
+    0 0 50px rgba(255, 158, 252, 0.3), 0 0 75px rgba(255, 158, 252, 0.2);
+}
+
+/* Animeringen för loggan som ger en skimmrande effekt */
+@keyframes shimmer {
+  0% {
+    text-shadow: 1px 1px 2px #957dad, 2px 2px 5px #957dad,
+      4px 4px 10px rgba(149, 125, 173, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px #ff9efc, 0 0 20px #ff9efc,
+      0 0 30px rgba(255, 158, 252, 0.5);
+  }
+  100% {
+    text-shadow: 1px 1px 2px #957dad, 2px 2px 5px #957dad,
+      4px 4px 10px rgba(149, 125, 173, 0.5);
+  }
+}
+
+.logo a {
+  /* Tar bort understrykningen */
+  text-decoration: none;
+  /* Ärver färgen från föräldern logo */
+  color: inherit;
+}
+/* *SLUT PÅ STYLING FÖR LOGGAN */
+
+/* *ALL STYLING FÖR NAVBAREN LÄNGST UPP PÅ SIDAN */
+/* Navigationbaren längst upp på sidan som innehåller loggan och länkarna till dom olika sidorna på hemsidan, denna görs till en flexbox som centreras
+  med jämt utrymme mellan varje element */
+nav {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 1rem 2rem;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* Länkarna i nav baren görs oxå till en flexbox så att vi kan styra var dom ska visas, ett mellanrum mellan varje länk skapas oxå */
+.nav-links {
+  display: flex;
+  margin-left: auto;
+  margin-right: 2.5rem;
+  gap: 1.5rem;
+}
+
+/* Alla anchor tags i nav-links */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: Neuropol;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Glow-effekt */
+.nav-links a:hover,
+.nav-icons .icon:hover {
+  text-shadow: 0 0 5px #f15bb5, 0 0 10px #f15bb5, 0 0 20px #f15bb5;
+}
+
+/* Glow-släp animation */
+.nav-links a::before,
+.nav-icons .icon:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(241, 91, 181, 0.3),
+    rgba(241, 91, 181, 0)
+  );
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.nav-links a:hover::before,
+.nav-icons .icon a:hover::before {
+  opacity: 1;
+}
+
+/* Styleing för ikonerna i navbaren */
+.nav-icons .icon {
+  padding: 0 0.3rem;
+  font-size: 1.8rem;
+  color: #fff;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* *SLUT PÅ STYLING FÖR NAVBAREN */
+
+/* *ALL STYLING FÖR PRODUCTS.HTML */
+/* En wrapper med gridbehållare som organiserar alla produkter */
+.products-wrapper {
+  display: grid;
+  /* Griden försöker automatiskt passa in så många kolumner som möjligt beroende på tillgänglig bredd.
+    Varje kolumn ska MINST vara 250px och max 1 fraktion av det utrymme som är kvar */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Sjävla produkt boxen som ligger inuti våran wrapper vi ser ovan */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effekt som gör att varje kort åker upp lite när man hovrar över dom */
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* En flexbox som organiserar alla produkt bilder inuti korten */
+.product-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Fångar upp alla img taggar inuti föräldern product-image */
+.product-image img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* En flexbox som organiserar all produkt info såsom titel, beskrivning och pris */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Titeln på produkten */
+.product-info h3 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+/* Beskrivningen till produkten */
+.product-info p {
+  display: flex;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Orbitron;
+  font-weight: 450;
+  text-shadow: var(--text-shadow-1);
+  margin-bottom: auto;
+}
+
+/* Priset på produkten */
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-2);
+}
+
+.product-info .btn {
+  margin-top: 0.3rem;
+}
+
+.product-info a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* *SLUT PÅ PRODUCTS.HTML STYLING */
+
+/* *ALL CONTACT.HTML STYLING */
+/* Sjävla boxen där kontaktformuläret ligger i */
+.contact-container {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* En grid wrapper för att lägga namn och efternamn fälten brevid varandra i kontaktfältet */
+.contact-form-names-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Rubriken för kontaktformuläret */
+.contact-container h2 {
+  color: white;
+  font-family: Neuropol;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* Själva form elementet inuti contact-container elementet */
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 auto; /* Centrerar formuläret inom containern */
+  gap: 1.5rem;
+}
+
+/* *SLUT PÅ CONTACT.HTML STYLING */
+
+/* *STYLING FÖR ALLA BUTTONS */
+.btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-family: Neuropol;
+  font-weight: 500;
+  text-shadow: var(--text-shadow-1);
+}
+
+.btn:hover {
+  background: rgba(160, 53, 231, 0.4);
+  box-shadow: 0 0 20px rgba(160, 53, 231, 0.5);
+  border-color: rgba(160, 53, 231, 0.5);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px rgba(160, 53, 231, 0.3);
+}
+
+/* *SLUT PÅ STYLING FÖR ALLA BUTTONS */
+
+/* *ALL FOOTER STYLING */
+/* Styling för själva footern som ska visas på varje sida längst ner */
+footer {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+  margin-top: 4rem;
+  margin-top: auto;
+}
+
+/* En gridbehållare för att organisera innehållet i footern */
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  color: white;
+}
+
+/* Rubriken för varje sektion i footern */
+.footer-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+/* Gör så att vi kan stylea rubriken med ett litet understreck, med ett after pseudoelement är det lättare att styra exakt hur detta understreck ska se ut och vart vi ska placera det utan att behöva göra en ny klass för detta */
+.footer-section h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* "Stay updated with our latest offer" texten */
+.footer-section p {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-family: Orbitron;
+  font-weight: 500;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* Tar bort punkterna på listan */
+.footer-section ul {
+  list-style: none;
+}
+
+/* Lägger till lite mellanrum mellan texterna i listan i footern */
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Styling för alla anchor tags i footern */
+.footer-section a {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Neuropol;
+  /* Tar bort understrykningen */
+  text-decoration: none;
+  text-shadow: var(--text-shadow-1);
+  /* Gör det möjligt att använda transformeringar som behövs vid hoover effekten nedanför */
+  display: inline-block;
+  /* Lägger till en smidig övergång ifrån animationen */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effekt för alla anchor tags i footern*/
+.footer-section a:hover {
+  /* Lyft och förstora lite */
+  transform: translateY(-5px) scale(1.1);
+  color: #ffffff;
+  text-shadow: 0 0 10px #9b5de5, 0 0 10px #f15bb5, 0 0 15px #9b5de5;
+}
+
+/* Copyright texten längst ner på sidan*/
+.footer-copyright-text {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* *SLUT PÅ ALL FOOTER STYLING */
+
+/* *ALLA TEXTINPUTS */
+/* Ändrar storleken och utrymmen på knappen i footern */
+.footer-section input[type="email"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+/* Styleing för alla input, select och textarea fält */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--standard-container-background);
+  color: white;
+  font-family: Orbitron;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Styleing för alla input, select och textarea fält när man har aktiverat fältena, alltså när du har klickat på dom */
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(160, 53, 231, 1);
+  background: rgba(160, 53, 231, 0.1);
+  box-shadow: 0 0 15px rgba(160, 53, 231, 1);
+  outline: none;
+}
+
+/* Styleing för placeholder texten inuti alla input, select och textarea fält */
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* Gör meddelandefältet i kontaktformuläret större */
+.contact-container textarea {
+  min-height: 300px;
+}
+
+/* Sätter en annan bakgrund på dropdown-menyn i kontaktformuläret */
+.contact-container option {
+  background: #1a1a1a;
+}
+
+/* *SLUT PÅ ALLA TEXTINPUTS */
+
+/* *ALL PROFILE.HTML STYLING */
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.profile-header-container {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.profile-pic {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  object-fit: cover;
+  width: 30%;
+  margin-bottom: 1rem;
+}
+
+.profile-username {
+  font-family: Neuropol;
+  margin-bottom: 0.5rem;
+  text-shadow: var(--text-shadow-2);
+}
+
+.profile-rank {
+  font-family: Orbitron;
+  color: #f15bb5;
+  text-shadow: 0 0 10px #f15bb5;
+}
+
+.profile-stats-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-item {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.stat-item i {
+  font-size: 1.5rem;
+  color: #f15bb5;
+  text-shadow: 0 0 10px #f15bb5;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-family: Neuropol;
+  margin: 0.5rem;
+  text-shadow: var(--text-shadow-2);
+}
+
+.stat-label {
+  font-family: Orbitron;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.profile-sections-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.profile-section {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+}
+
+.profile-section h3 {
+  color: white;
+  font-family: Neuropol;
+  margin-bottom: 1.5rem;
+  text-shadow: var(--text-shadow-2);
+}
+
+.profile-section h3 i {
+  margin-right: 0.5rem;
+  color: #f15bb5;
+}
+
+.profile-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: white;
+  font-family: Orbitron;
+  font-size: 0.9rem;
+  text-shadow: var(--text-shadow-1);
+}
+
+.order-history-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  color: white;
+  font-family: Orbitron;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.order-id {
+  font-weight: bold;
+  color: #f15bb5;
+  text-shadow: 0 0 5px #f15bb5;
+}
+
+.order-date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.order-status {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: rgba(160, 53, 231, 0.2);
+  font-size: 0.9rem;
+  text-shadow: var(--text-shadow-1);
+}
+/* *SLUT PÅ ALL PROFILE.HTML STYLING */
+
+/* ALL FAQ.HTML STYLING */
+.faq-section {
+  margin-bottom: 2rem;
+}
+
+.faq-section h2 {
+  color: white;
+  font-family: Neuropol;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: var(--text-shadow-logo);
+}
+
+/* Varje FAQ-block */
+details {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+/* Styla själva frågan (summary) */
+summary {
+  font-family: Neuropol;
+  font-size: 1rem;
+  color: white;
+  outline: none;
+  text-shadow: var(--text-shadow-1);
+  transition: color 0.3s ease;
+}
+
+/* FAQ-svar (det som fälls ut när man klickar) */
+details p {
+  margin-top: 1rem;
+  font-family: Orbitron;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: var(--text-shadow-1);
+  line-height: 1.5;
+}
+
+/* Ändrar färg på summary när FAQ-blocket är öppet */
+details[open] summary {
+  color: #ffffff;
+  text-decoration: underline;
+  text-shadow: 0 0 10px #9b5de5, 0 0 10px #f15bb5, 0 0 15px #9b5de5;
+}
+/* SLUT PÅ ALL FAQ.HTML STYLING */
+
+/* ALL CART.HTML STYLING */
+.cart-section {
+  margin-bottom: 2rem;
+}
+
+.cart-section h2 {
+  color: white;
+  font-family: Neuropol;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: var(--text-shadow-logo);
+}
+
+/* Container som omger alla varor i kundkorgen */
+.cart-container {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Varje individuell vara i kundkorgen */
+.cart-item {
+  display: flex;
+  flex-wrap: wrap; /* Gör att innehållet radbryts på mindre skärmar */
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+/* Bildbehållare för varje artikel */
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0; /* Gör att bilden inte krymper om ytan blir för liten */
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info-del om varan (produktnamn, pris, etc.) */
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Tar upp resterande plats */
+}
+
+.cart-item-details h3 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.cart-item-details p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-1);
+}
+
+/* Summering/rad under varorna */
+.cart-summary {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.cart-summary a {
+  text-decoration: none;
+}
+
+.cart-summary a:hover {
+  text-decoration: underline;
+}
+
+.cart-summary p {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Orbitron;
+  font-size: 1rem;
+  text-shadow: var(--text-shadow-1);
+  margin-bottom: 1rem;
+}
+/* SLUT PÅ ALL CART.HTML STYLING */
+
+/* ALL LOGIN.HTML STYLING */
+.login-container {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  margin-top: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-form h2 {
+  color: white;
+  font-family: Neuropol;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: var(--text-shadow-1);
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.login-options label {
+  margin: 0;
+}
+
+.login-options a {
+  margin: 0;
+}
+
+.login-form label {
+  font-family: Orbitron;
+  font-size: 0.8rem;
+  text-shadow: var(--text-shadow-1);
+  color: #fdfdfd;
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d6d6d64f;
+  background-color: #6464645e;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  background-color: #a035e7;
+  border-color: #bb9ce2;
+}
+.custom-checkbox:hover {
+  background-color: #a035e7;
+}
+
+.login-form a {
+  font-family: Orbitron;
+  font-size: 0.8rem;
+  text-shadow: var(--text-shadow-1);
+  color: #fdfdfd;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-shadow: 0 0 10px #9b5de5, 0 0 10px #f15bb5, 0 0 15px #9b5de5;
+}
+
+/* SLUT PÅ ALL LOGIN.HTML STYLING */
+
+/* ALL ABOUT.HTML STYLING */
+.page-about h2 {
+  text-align: center;
+  color: #ff007f;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.page-about h3,
+h4 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.our-mission {
+  padding: 40px;
+  margin: 20px auto;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.our-story {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.story-content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.story-text {
+  max-width: 50%;
+}
+
+.story-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.story-image img:hover {
+  transform: scale(1.05);
+}
+
+.our-team {
+  margin: 10px auto;
+  width: 60%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  flex: 1 1 200px;
+  max-width: 150px;
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #ff007f;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.team-member h3 {
+  margin-top: 10px;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.our-values {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.our-values h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.values-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.value-item {
+  text-align: center;
+  max-width: 200px;
+}
+
+.value-item img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.value-item h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.value-item p {
+  font-size: 1rem;
+}
+
+.page-about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: Orbitron;
+}
+
+.page-about p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  font-family: Orbitron;
+  font-weight: 450;
+  text-shadow: var(--text-shadow-1);
+}
+/* SLUT PÅ ALL ABOUT.HTML STYLING */
+
+/* ALL PRODUCT-DETAILS.HTML STYLING */
+.product-details {
+  display: flex;
+  gap: 50px;
+  margin: 50px 0;
+}
+
+.product-images {
+  flex: 1;
+}
+
+.product-images .main-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.thumbnail-images {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail-images img {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumbnail-images img:hover {
+  border-color: white;
+}
+
+.product-info {
+  flex: 2;
+}
+
+.product-info h1 {
+  font-size: 2rem;
+
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.product-info .price {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.features {
+  margin: 20px 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.features li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  font-family: Orbitron;
+  font-weight: 450;
+  text-shadow: var(--text-shadow-1);
+}
+
+.add-to-cart {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.reviews {
+  padding: 40px;
+  margin: 20px auto;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.reviews p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  font-family: Orbitron;
+  font-weight: 450;
+  text-shadow: var(--text-shadow-1);
+}
+
+.reviews h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.all-products {
+  font-size: 2.4rem;
+  margin: 0px 0;
+  text-align: center;
+  color: #ff007f;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+
+.reviews h2 {
+  text-align: center;
+  color: #ff007f;
+  margin-bottom: 0.5rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-2);
+}
+/* SLUT PÅ ALL PRODUCT-DETAILS.HTML STYLING */
+
+/* ALL CHECKOUT.HTML STYLING */
+.checkout-container {
+  background: var(--standard-container-background);
+  backdrop-filter: var(--standard-backdrop-blur);
+  border: var(--standard-container-border);
+  border-radius: var(--standard-border-radius);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.checkout-container h2 {
+  color: white;
+  font-family: Neuropol;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: var(--text-shadow-1);
+}
+
+.checkout-products {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.checkout-products p {
+  font-size: 1rem;
+  color: white;
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-1);
+}
+
+.checkout-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  font-family: Orbitron;
+  text-shadow: var(--text-shadow-2);
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.checkout-form option {
+  background: #1a1a1a;
+}
+
+.checkout-form button {
+  width: 50%;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.card-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-icons i {
+  font-size: 2rem;
+  color: lightgray;
+}
+
+.card-details {
+  display: flex;
+  gap: 1rem;
+}
+/* SLUT PÅ ALL CHECKOUT.HTML STYLING */
+
+/* *ALL INDEX.HTML STYLING */
+.hero-section {
+  position: relative;
+  width: 100%;
+  background-image: url("./images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  margin-bottom: 4rem;
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-family: Neuropol;
+  text-shadow: var(--text-shadow-logo);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: Orbitron;
+  font-weight: 500;
+  text-shadow: var(--text-shadow-1);
+}
+
+.hero-btn {
+  font-size: 1rem;
+  font-family: Neuropol;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.top-sellers {
+  margin-bottom: 2rem;
+}
+
+.top-sellers h2 {
+  text-align: center;
+  color: white;
+  font-family: Neuropol;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: var(--text-shadow-logo);
+}
+
+.review-text {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.review-rating {
+  color: #ffda00;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+/* *SLUT PÅ ALL INDEX.HTML STYLING */
+
+/* STYLING FÖR FELMEDDELANDE VID KONTAKTFORMULÄRET I CONTACT.HTML */
+#message {
+  display: none;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: Orbitron;
+  font-weight: 500;
+  text-shadow: var(--text-shadow-1);
+}
+
+#message .success {
+  color: #28a745;
+}
+
+#message .error {
+  color: #dc3545;
+}
+/* SLUT PÅ STYLING FÖR FELMEDDELANDE VID KONTAKTFORMULÄRET I CONTACT.HTML */
+
+/* *ALLA MEDIAQUERYS */
+/* Om skärmens bredd är 1024 pixlar eller mindre så tar dessa regler över */
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .product-card {
+    margin: 0 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .profile-header-container {
+    padding: 1.5rem;
+  }
+
+  .profile-pic {
+    width: 60%;
+  }
+
+  .profile-section {
+    padding: 1.5rem;
+  }
+
+  .product-details {
+    gap: 30px;
+  }
+
+  .product-info h1 {
+    font-size: 1.8rem;
+  }
+
+  .product-info .price {
+    font-size: 1.4rem;
+  }
+
+  .reviews h2 {
+    font-size: 1.8rem;
+  }
+
+  .reviews h3 {
+    font-size: 1.2rem;
+  }
+
+  .reviews p {
+    font-size: 1rem;
+  }
+
+  .checkout-contaier {
+    padding: 1.5rem;
+  }
+
+  .chenkout-site {
+    padding: 1.5rem;
+  }
+
+  .all-products {
+    font-size: 2rem;
+  }
+}
+
+/* Om skärmens bredd är 768 pixlar eller mindre så tar dessa regler över */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    margin: 0;
+    gap: 0.8rem;
+  }
+
+  .nav-icons {
+    margin-top: 0.5rem;
+  }
+
+  .profile-sections-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-stats-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .product-details {
+    flex-direction: column;
+  }
+
+  .product-images,
+  .product-info {
+    flex: 1 1 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .story-content {
+    flex-direction: column;
+  }
+
+  .story-text {
+    max-width: 100%;
+  }
+
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .values-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-summary {
+    text-align: left;
+  }
+
+  .checkout-contaier {
+    padding: 1rem;
+  }
+
+  .chenkout-site {
+    max-width: 100%;
+  }
+
+  .all-products {
+    font-size: 1.8rem;
+  }
+}
+
+/* Om skärmens bredd är 468 pixlar eller mindre så tar dessa regler över */
+@media (max-width: 468px) {
+  html {
+    font-size: 13px;
+  }
+
+  body {
+    padding: 0.5rem;
+  }
+
+  .outer-box {
+    border-radius: 15px;
+  }
+
+  .product-card {
+    margin: 0 0.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .nav-links {
+    gap: 0.5rem;
+  }
+
+  .nav-icons {
+    margin-top: 0.3rem;
+  }
+
+  .profile-header-container {
+    padding: 1rem;
+  }
+
+  .profile-pic {
+    width: 50%;
+  }
+
+  .profile-stats-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-section {
+    padding: 1rem;
+  }
+
+  .product-details {
+    gap: 20px;
+  }
+
+  .product-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .product-info .price {
+    font-size: 1.2rem;
+  }
+
+  .features {
+    padding-left: 10px;
+  }
+
+  .reviews {
+    padding: 1rem;
+  }
+
+  .reviews h2 {
+    font-size: 1.5rem;
+  }
+
+  .reviews h3 {
+    font-size: 1rem;
+  }
+
+  .reviews p {
+    font-size: 0.9rem;
+  }
+
+  .checkout-contaier {
+    padding: 0.5rem;
+  }
+
+  .chenkout-site {
+    padding: 0.5rem;
+  }
+
+  .story-content {
+    flex-direction: column;
+  }
+
+  .cart-item-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .chekout-produkt {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-form-names-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .top-sellers h2 {
+    font-size: 1.8rem;
+  }
+
+  .login-site {
+    padding: 1rem;
+  }
+
+  .product-images .main-image {
+    width: 100%;
+  }
+
+  .products-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-sections-wrapper {
+    gap: 1rem;
+  }
+
+  .all-products {
+    font-size: 1.5rem;
+  }
+}
+/* *SLUT PÅ ALLA MEDIAQUERYS */
