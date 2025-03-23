@@ -1,27 +1,27 @@
 # NightCity Warez Shop
 
-## Beskrivning
-NightCity Warez Shop är ett skolprojekt som syftar till att skapa en modern och stilren webbshop med hjälp av HTML och CSS. Projektet innehåller flera sidor som visar olika aspekter av en e-handelswebbplats, inklusive en startsida, produktsida, kundvagn, kassa och kontaktformulär.
+## Description
+NightCity Warez Shop is a school project aimed at creating a modern and stylish online store using HTML and CSS. The project includes multiple pages showcasing different aspects of an e-commerce website, including a homepage, product page, shopping cart, checkout, and contact form.
 
-## Sidor
-- **index.html**: Startsidan med en hero-sektion och toppsäljande produkter.
-- **products.html**: En sida som visar alla tillgängliga produkter.
-- **product-details.html**: Detaljerad information om en specifik produkt.
-- **cart.html**: Kundvagnssidan där användare kan se sina valda produkter.
-- **checkout.html**: Kassasidan där användare kan fylla i sina betalningsuppgifter.
-- **about.html**: Information om företaget och dess värderingar.
-- **contact.html**: Ett kontaktformulär för att nå ut till företaget.
-- **faq.html**: Vanliga frågor och svar.
-- **login.html**: Inloggningssida för användare.
-- **profile.html**: Användarens profilsida med personlig information och orderhistorik.
+## Pages
+- **index.html**: The homepage with a hero section and top-selling products.
+- **products.html**: A page displaying all available products.
+- **product-details.html**: Detailed information about a specific product.
+- **cart.html**: The shopping cart page where users can view their selected products.
+- **checkout.html**: The checkout page where users can enter their payment details.
+- **about.html**: Information about the company and its values.
+- **contact.html**: A contact form to reach out to the company.
+- **faq.html**: Frequently Asked Questions.
+- **login.html**: Login page for users.
+- **profile.html**: The user profile page with personal information and order history.
 
-## Använda teknologier
-- **HTML**: För att strukturera innehållet på webbplatsen.
-- **CSS**: För att styla webbplatsen och göra den visuellt tilltalande.
+## Technologies Used
+- **HTML**: To structure the content of the website.
+- **CSS**: To style the website and make it visually appealing.
 
-## Författare
+## Authors
 
-Detta projekt är skapat av:
+This project was created by:
 
 - **Marcus Lehm** - [GitHub](https://github.com/Perss00n)
 - **Evelina Hubinette** - [GitHub](https://github.com/EveLexie)
